@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Продукти · Meal Plan</title>
+  <meta name="description" content="Протокол харчування для чоловіків 60+ з інсулінорезистентністю. Меню на тиждень, продукти, добавки, принципи.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="logo">Meal Plan <span>· протокол 60+</span></a>
+    <button class="menu-toggle" aria-label="Меню">Меню</button>
+    <nav class="navlinks">
+      <a href="index.html">Головна</a>
+      <a href="planner.html">Планувальник</a>
+      <a href="products.html" class="active">Продукти</a>
+      <a href="supplements.html">Добавки</a>
+      <a href="principles.html">Принципи</a>
+      <a href="recipes.html">Логістика</a>
+      <a href="family.html">Для сім'ї</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+<h1>Продукти</h1>
+<p class="lead">Списки по категоріях з поясненням, чому кожен продукт увійшов у свій рівень.</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="protein">Білки</button>
+  <button class="tab-btn" data-tab="veg">Овочі</button>
+  <button class="tab-btn" data-tab="sides">Гарніри</button>
+  <button class="tab-btn" data-tab="fats">Жири</button>
+  <button class="tab-btn" data-tab="dairy">Молочне</button>
+  <button class="tab-btn" data-tab="berries">Ягоди</button>
+  <button class="tab-btn" data-tab="avoid">Уникати</button>
+</div>
+
+<!-- БІЛКИ -->
+<div id="tab-protein" class="tab-content">
+  <h2>Пріоритет — 4–5 обідів/тиждень</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Куряча грудка без шкіри</strong><span class="badge badge-good">31 г / 100 г</span></div>
+    <div class="card-sub">Порція 200 г = 62 г білка, 330 ккал, 3.6 г жиру. Найкраще співвідношення білок/калорії. Запікати 180°C 25 хв з EVOO.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Філе індички</strong><span class="badge badge-good">29 г / 100 г</span></div>
+    <div class="card-sub">Порція 180 г = 52 г білка. Більше цинку й селену за курку. Запекти великим шматком на 2 обіди.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Лосось / форель</strong><span class="badge badge-good">22 г / 100 г + Omega-3</span></div>
+    <div class="card-sub">Порція 200 г = 44 г білка + ~4 г Omega-3. MIND-пункт (жирна риба 2×/тижд). У контейнері 2 дні.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Скумбрія / сардини</strong><span class="badge badge-good">20 г / 100 г + Omega-3</span></div>
+    <div class="card-sub">Порція 180 г = 36 г білка + ~5 г Omega-3 (більше ніж у лосося на грам). Сардини з кістками = бонус кальцію.</div>
+  </div>
+
+  <h2>Добре — 1–2 рази на тиждень</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Тунець у власному соку</strong><span class="badge badge-ok">25 г / 100 г</span></div>
+    <div class="card-sub">Одна банка 150 г = 37 г білка. Максимум 1×/тижд через ртуть. Skipjack — кращий за albacore.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Нежирна яловичина (огузок, вирізка)</strong><span class="badge badge-ok">26 г / 100 г</span></div>
+    <div class="card-sub">Порція 180 г = 47 г білка. 1×/тижд, бажано в день ніг (Сб). Залізо гемове, креатин, цинк.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Печінка яловича</strong><span class="badge badge-ok">20 г / 100 г</span></div>
+    <div class="card-sub">Порція 120 г = 24 г білка + B12, холін, ретинол, мідь. <strong>Обов'язково 1×/тижд</strong> — холін критичний для мозку.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Креветки / кальмари</strong><span class="badge badge-ok">20 г / 100 г</span></div>
+    <div class="card-sub">Порція 180 г = 36 г білка, ~170 ккал. Йод, селен. Варити 2 хв.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Тріска / пікша / судак</strong><span class="badge badge-ok">18 г / 100 г</span></div>
+    <div class="card-sub">Порція 220 г = 40 г білка, 170 ккал. Для днів із жорсткішим дефіцитом. Мало Omega-3.</div>
+  </div>
+
+  <h2>Зрідка — з обмеженнями</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Сочевиця / нут як головний білок</strong><span class="badge badge-ok">9 г / 100 г</span></div>
+    <div class="card-sub">Засвоюваність 70% проти 95% у яйцях. У 60+ — додаток до тваринного білка, не заміна.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Яловиче серце</strong><span class="badge badge-ok">17 г / 100 г</span></div>
+    <div class="card-sub">Найкраще харчове джерело CoQ10. 1×/тижд як альтернатива печінці. Вищі насичені жири.</div>
+  </div>
+</div>
+
+<!-- ОВОЧІ -->
+<div id="tab-veg" class="tab-content" style="display:none;">
+  <h2>Листова зелень — щодня на вечерю</h2>
+  <p class="muted">MIND: 6×/тиждень мінімум. Ваша ціль — 7×. Порція 120–150 г на вечерю з 1 ст.л. EVOO.</p>
+
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><strong>Шпинат</strong></div><div class="card-sub">Фолат, вітамін K, лютеїн. База салату.</div></div>
+    <div class="card"><div class="card-title"><strong>Руккола</strong></div><div class="card-sub">Глюкозинолати, нітрати. Пікантний смак.</div></div>
+    <div class="card"><div class="card-title"><strong>Мангольд</strong></div><div class="card-sub">Магній, калій. Можна тушкувати.</div></div>
+    <div class="card"><div class="card-title"><strong>Кейл (кучерява капуста)</strong></div><div class="card-sub">Найвищий сульфорафан серед зелені.</div></div>
+    <div class="card"><div class="card-title"><strong>Романо / ромен</strong></div><div class="card-sub">База салатів. Хрустка текстура.</div></div>
+  </div>
+
+  <h2>Хрестоцвіті — 5×/тиждень</h2>
+  <p class="muted">Сульфорафан (різати за 30–40 хв до термообробки для активації фермента).</p>
+
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><strong>Броколі</strong></div><div class="card-sub">Основний гарнір. На пару 200 г. Різати заздалегідь.</div></div>
+    <div class="card"><div class="card-title"><strong>Цвітна капуста</strong></div><div class="card-sub">Заміна «рису». Запікати з EVOO.</div></div>
+    <div class="card"><div class="card-title"><strong>Брюссельська капуста</strong></div><div class="card-sub">Запекти 200°C 25 хв з EVOO.</div></div>
+    <div class="card"><div class="card-title"><strong>Квашена капуста</strong></div><div class="card-sub">Ферментоване 3–4×/тиждень. 100 г порція.</div></div>
+  </div>
+
+  <h2>Інші овочі</h2>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><strong>Помідори</strong></div><div class="card-sub">Варені з EVOO — ликопен краще засвоюється. MIND-позиція.</div></div>
+    <div class="card"><div class="card-title"><strong>Кабачки / цукіні</strong></div><div class="card-sub">Низький GI, легкий гарнір.</div></div>
+    <div class="card"><div class="card-title"><strong>Спаржа</strong></div><div class="card-sub">Фолат, вітамін K. Запекти 15 хв.</div></div>
+    <div class="card"><div class="card-title"><strong>Гриби печериці</strong></div><div class="card-sub">Селен, ерготіонеїн. Трохи білка.</div></div>
+    <div class="card"><div class="card-title"><strong>Баклажан</strong></div><div class="card-sub">Запікати, не смажити (вбирає багато олії).</div></div>
+  </div>
+</div>
+
+<!-- ГАРНІРИ -->
+<div id="tab-sides" class="tab-content" style="display:none;">
+  <h2>Щодня — низький GI (овочеві гарніри)</h2>
+  <p class="muted">Для не-тренувальних днів. Низький глікемічний індекс, висока клітковина, мало калорій.</p>
+
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><strong>Броколі</strong><span class="badge badge-good">GI 15</span></div><div class="card-sub">200 г. Основний вибір.</div></div>
+    <div class="card"><div class="card-title"><strong>Цвітна капуста</strong><span class="badge badge-good">GI 15</span></div><div class="card-sub">200 г. Заміна рису.</div></div>
+    <div class="card"><div class="card-title"><strong>Брюссельська</strong><span class="badge badge-good">GI 15</span></div><div class="card-sub">200 г. Запечена.</div></div>
+    <div class="card"><div class="card-title"><strong>Кабачки / цукіні</strong><span class="badge badge-good">GI 15</span></div><div class="card-sub">250 г. Легкий варіант.</div></div>
+    <div class="card"><div class="card-title"><strong>Гриби</strong><span class="badge badge-good">GI 15</span></div><div class="card-sub">200 г. Бонус білка 3 г/100 г.</div></div>
+    <div class="card"><div class="card-title"><strong>Спаржа</strong><span class="badge badge-good">GI 15</span></div><div class="card-sub">200 г. Запечена з EVOO.</div></div>
+  </div>
+
+  <h2>Тільки у тренувальні дні — крупи</h2>
+  <p class="muted">У Ср (верх) і Сб (ноги). Післятренувальне вікно — глікоген відновлюється. Порція 150 г вареного (≈50 г сухого).</p>
+
+  <div class="card">
+    <div class="card-title"><strong>Перловка (ячмінна крупа)</strong><span class="badge badge-good">GI 25</span></div>
+    <div class="card-sub">Найнижчий GI серед зернових! Бета-глюкан знижує LDL. Мінус — варити 40 хв, робити партію в неділю.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Гречка</strong><span class="badge badge-good">GI 45</span></div>
+    <div class="card-sub">Рутин (капіляри, АТ), магній, повний амінокислотний профіль. Кращий старт.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Кіноа</strong><span class="badge badge-good">GI 53</span></div>
+    <div class="card-sub">~8 г білка на 150 г вареної. Всі незамінні амінокислоти. Добре до риби.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Вівсянка steel-cut (не пластівці)</strong><span class="badge badge-good">GI 42</span></div>
+    <div class="card-sub">Бета-глюкан ↓LDL. <strong>Тільки</strong> steel-cut, не швидкого приготування.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Булгур, дикий рис, фарро</strong><span class="badge badge-ok">GI 40–50</span></div>
+    <div class="card-sub">Запасні варіанти ротації. Фарро містить глютен.</div>
+  </div>
+</div>
+
+<!-- ЖИРИ -->
+<div id="tab-fats" class="tab-content" style="display:none;">
+  <h2>Пріоритет — EVOO як основний жир</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Оливкова олія Extra Virgin</strong><span class="badge badge-good">основна</span></div>
+    <div class="card-sub">Олеокантал — противозапальна активність (ефект порівнюють з мікродозою ібупрофену). Для салатів, заправок, легкого пригоршування. 1–2 ст.л. на прийом.</div>
+  </div>
+
+  <h2>Горіхи та насіння — 5×/тиждень</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Волоські горіхи</strong><span class="badge badge-good">MIND + Omega-3 ALA</span></div>
+    <div class="card-sub">15–20 г/порція. Єдиний горіх з рослинним Omega-3. Перекус або додаток до салату.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Мигдаль</strong><span class="badge badge-good">вітамін E</span></div>
+    <div class="card-sub">15 г/порція. Замочувати корисно для зменшення фітинової кислоти.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Гарбузове насіння</strong><span class="badge badge-good">цинк, магній</span></div>
+    <div class="card-sub">20–30 г/день. Бонус для передміхурової залози (для ДГПЗ).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Льняне насіння</strong><span class="badge badge-good">ALA, лігнани</span></div>
+    <div class="card-sub">1 ст.л. меленого щодня. Тільки свіжо мелене (інакше окислюється).</div>
+  </div>
+
+  <h2>Обережно</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Вершкове масло</strong><span class="badge badge-bad">макс 1 ч.л./день</span></div>
+    <div class="card-sub">MIND обмежує насичені жири. Заміна — EVOO.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Соняшникова, ріпакова, кукурудзяна</strong><span class="badge badge-bad">уникати</span></div>
+    <div class="card-sub">Високий омега-6, окислюється при нагріванні. Замінити на EVOO.</div>
+  </div>
+</div>
+
+<!-- МОЛОЧНЕ -->
+<div id="tab-dairy" class="tab-content" style="display:none;">
+  <h2>Ферментоване — 4–5×/тиждень</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Грецький йогурт (натуральний, без цукру)</strong><span class="badge badge-good">9–10 г білка/100 г</span></div>
+    <div class="card-sub">150–200 г порція + ягоди. База для перекусу 16:00. Вибирати з жирністю 2–4%, не 0% (жир потрібен для всмоктування вітамінів).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Сир кисломолочний 5%</strong><span class="badge badge-good">15 г білка/100 г</span></div>
+    <div class="card-sub">150 г = 22 г білка. Ротувати з йогуртом. Casein — довше засвоюється, добре на вечір.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Кефір натуральний</strong><span class="badge badge-good">пробіотики</span></div>
+    <div class="card-sub">Ферментовані бактерії. 200 мл до сну — спокійний сон.</div>
+  </div>
+
+  <h2>Обережно</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Твердий сир</strong><span class="badge badge-ok">макс 30 г/день</span></div>
+    <div class="card-sub">MIND обмежує до 1×/тижд. Сучасні мета-аналізи менш суворі, але сіль і калорії — справжнє обмеження.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Молоко незбиране</strong><span class="badge badge-ok">ситуативно</span></div>
+    <div class="card-sub">Альтернативи краще: ферментоване молоко або несолодке рослинне.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Йогурти з фруктами, солодкий сирок</strong><span class="badge badge-bad">уникати</span></div>
+    <div class="card-sub">15+ г цукру на упаковку. Робити самому: натуральний йогурт + ягоди.</div>
+  </div>
+</div>
+
+<!-- ЯГОДИ -->
+<div id="tab-berries" class="tab-content" style="display:none;">
+  <h2>Пріоритет — 3–4×/тиждень</h2>
+  <p class="muted">MIND: 2+×/тиждень. Антоціаніни проникають через гематоенцефалічний бар'єр. Заморожені — без втрати користі.</p>
+
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><strong>Чорниця</strong><span class="badge badge-good">найвищий ORAC</span></div><div class="card-sub">80–100 г у йогурт. Антоціаніни.</div></div>
+    <div class="card"><div class="card-title"><strong>Ожина</strong><span class="badge badge-good">клітковина</span></div><div class="card-sub">Ротувати з чорницею.</div></div>
+    <div class="card"><div class="card-title"><strong>Малина</strong><span class="badge badge-good">елагова кислота</span></div><div class="card-sub">Низький GI, клітковина.</div></div>
+    <div class="card"><div class="card-title"><strong>Полуниця</strong><span class="badge badge-good">вітамін C</span></div><div class="card-sub">Сезонна. Купувати органічну.</div></div>
+  </div>
+
+  <h2>Інші фрукти</h2>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><strong>Авокадо</strong><span class="badge badge-good">MUFA</span></div><div class="card-sub">1/2 плоду 2–3×/тижд. У салат.</div></div>
+    <div class="card"><div class="card-title"><strong>Лимон / лайм</strong><span class="badge badge-good">необмежено</span></div><div class="card-sub">Заправка салату.</div></div>
+    <div class="card"><div class="card-title"><strong>Зелене яблуко</strong><span class="badge badge-ok">GI 36</span></div><div class="card-sub">1 на день ОК. З горіхами.</div></div>
+    <div class="card"><div class="card-title"><strong>Гранат</strong><span class="badge badge-ok">поліфеноли</span></div><div class="card-sub">1/2 плоду. Насіння у салат.</div></div>
+  </div>
+
+  <h2>Обережно через HOMA-IR</h2>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><strong>Банан стиглий</strong><span class="badge badge-bad">GI 62</span></div><div class="card-sub">Тільки недозрілий, в трен. день.</div></div>
+    <div class="card"><div class="card-title"><strong>Виноград</strong><span class="badge badge-bad">GI 59</span></div><div class="card-sub">Фруктоза висока.</div></div>
+    <div class="card"><div class="card-title"><strong>Сухофрукти</strong><span class="badge badge-bad">концентрат цукру</span></div><div class="card-sub">У 3–4 рази більше цукру за свіжі.</div></div>
+    <div class="card"><div class="card-title"><strong>Соки фруктові</strong><span class="badge badge-bad">уникати</span></div><div class="card-sub">Цукор без клітковини = стрибок глюкози.</div></div>
+  </div>
+</div>
+
+<!-- УНИКАТИ -->
+<div id="tab-avoid" class="tab-content" style="display:none;">
+  <h2>Повне виключення</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Ковбасні вироби, бекон, сосиски, салямі, шинка</strong><span class="badge badge-bad">виключити</span></div>
+    <div class="card-sub">Група 1 канцерогенів за IARC. Нітрити, сіль, AGE від копчення. MIND прямо забороняє.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Смажене у фритюрі (фрі, наггетси, чебуреки)</strong><span class="badge badge-bad">виключити</span></div>
+    <div class="card-sub">Окислені жири + AGE. MIND: максимум 1×/тижд, краще 0.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Цукор, солодощі, випічка, тістечка</strong><span class="badge badge-bad">виключити</span></div>
+    <div class="card-sub">При HOMA-IR 4.6 — основний тригер інсулінової реакції. MIND: макс 4×/тижд, для вас — 0.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Алкоголь (включно з вином)</strong><span class="badge badge-bad">виключити</span></div>
+    <div class="card-sub">WHO 2023: безпечної дози не існує. Додатково: погіршує сон, симптоми ДГПЗ, пригнічує МPS.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Солодкі напої, енергетики</strong><span class="badge badge-bad">виключити</span></div>
+    <div class="card-sub">Швидкі вуглеводи без поживних речовин.</div>
+  </div>
+
+  <h2>Максимально обмежити</h2>
+
+  <div class="card">
+    <div class="card-title"><strong>Білий хліб, білий рис, макарони з м'якої пшениці</strong><span class="badge badge-bad">GI 70+</span></div>
+    <div class="card-sub">Стрибки глюкози. Заміна: житній хліб на заквасці (зрідка), басматі/дикий рис, макарони durum al dente.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>Жирна свинина, бекон, сало</strong><span class="badge badge-bad">б'є по LDL</span></div>
+    <div class="card-sub">Насичені жири 10–15 г/100 г. Нежирна вирізка свинини 1×/тижд допустима.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><strong>«Рослинне м'ясо» (Beyond Meat тощо)</strong><span class="badge badge-bad">ультра-оброблене</span></div>
+    <div class="card-sub">Довгий склад, кокосова олія, ізоляти, емульгатори. «Здоровий» маркетинг не відповідає профілю.</div>
+  </div>
+</div>
+
+</main>
+
+<footer class="footer container">
+  <p>Інформаційний довідник. Не замінює консультації лікаря.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
