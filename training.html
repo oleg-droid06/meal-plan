@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Силові тренування · Meal Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base (match existing site) ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--surface:#161b22;--surface2:#1c2330;
+  --border:#30363d;--border-light:rgba(255,255,255,0.06);
+  --text:#e6edf3;--text2:#8b949e;--text3:rgba(255,255,255,0.35);
+  --accent:#7eb8da;--accent-bg:rgba(126,184,218,0.1);
+  --green:#5cb85c;--green-bg:rgba(92,184,92,0.08);
+  --amber:#e8a838;--amber-bg:rgba(232,168,56,0.08);
+  --purple:#a78bfa;--purple-bg:rgba(167,139,250,0.08);
+  --red:#f85149;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --max-w:720px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ── Top nav (matches existing site) ── */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.topbar-inner{max-width:var(--max-w);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;letter-spacing:.04em;font-weight:600}
+.topbar-brand:hover{color:#fff}
+.nav-toggle{display:none;background:none;border:none;color:var(--text2);font-size:22px;cursor:pointer;padding:4px}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;padding:5px 10px;border-radius:6px;transition:.15s}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(255,255,255,0.06)}
+@media(max-width:640px){
+  .nav-toggle{display:block}
+  .nav-links{display:none;width:100%;padding-top:8px;flex-direction:column}
+  .nav-links.open{display:flex}
+}
+
+/* ── Page layout ── */
+.page{max-width:var(--max-w);margin:0 auto;padding:24px 20px 60px}
+
+/* ── Header ── */
+.page-header{text-align:center;padding:20px 0 28px}
+.page-header .version{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--accent);margin-bottom:6px}
+.page-header h1{font-size:clamp(20px,4vw,26px);font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.page-header .subtitle{font-size:13px;color:var(--text2)}
+
+/* ── Schedule badges ── */
+.schedule{display:flex;gap:8px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+.schedule .badge{font-family:var(--mono);font-size:12px;padding:4px 12px;border-radius:8px;background:var(--accent-bg);border:1px solid rgba(126,184,218,.15);color:var(--accent)}
+.schedule .sep{font-size:12px;color:var(--text3);padding:4px 0}
+
+/* ── Section ── */
+.section{margin-bottom:28px}
+.section-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:4px 0;margin-bottom:12px;user-select:none}
+.section-head h2{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.08em;margin:0}
+.section-head .sub{font-size:12px;color:var(--text3);margin-top:2px}
+.section-head .chevron{font-size:16px;color:var(--text3);transition:transform .2s}
+.section-head .chevron.closed{transform:rotate(-90deg)}
+.section-body{overflow:hidden;transition:max-height .3s ease}
+.section-body.hidden{max-height:0!important;margin:0;padding:0}
+
+/* ── Warmup list ── */
+.warmup-item{display:flex;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid var(--border-light)}
+.warmup-item:last-child{border-bottom:none}
+.warmup-num{font-family:var(--mono);font-size:11px;color:var(--text3);width:16px;flex-shrink:0}
+.warmup-name{font-size:14px;color:var(--text)}
+.warmup-detail{font-size:12px;color:var(--text3);margin-left:8px}
+.tag-new{font-size:9px;font-weight:600;color:var(--green);letter-spacing:.05em;margin-left:auto;flex-shrink:0}
+
+/* ── Tab switcher ── */
+.tabs{display:flex;background:rgba(255,255,255,.03);border-radius:10px;padding:3px;margin-bottom:16px}
+.tab-btn{flex:1;padding:10px 0;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.05em;border:none;border-radius:8px;cursor:pointer;transition:.2s;background:transparent;color:var(--text3)}
+.tab-btn.active{background:rgba(126,184,218,.15);color:var(--accent)}
+
+/* ── Exercise card ── */
+.ex-card{background:linear-gradient(135deg,#1a1a2e,#0f0f1a);border:1px solid var(--border-light);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s}
+.ex-card:hover{border-color:rgba(255,255,255,.1)}
+.ex-card.changed{background:linear-gradient(135deg,#1a2a1a,#0f1a0f);border-color:#2d5a2d}
+.ex-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ex-num{font-family:var(--mono);font-size:13px;opacity:.4;width:18px;flex-shrink:0}
+.ex-icon{font-size:20px;flex-shrink:0}
+.ex-info{flex:1;min-width:0}
+.ex-name{font-size:14px;font-weight:600;color:var(--text);line-height:1.3}
+.ex-muscle{font-size:12px;color:var(--text3);margin-top:2px}
+.ex-sets{font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--accent-bg);padding:3px 8px;border-radius:6px;flex-shrink:0;white-space:nowrap}
+.ex-detail{margin-top:10px;padding-top:10px;border-top:1px solid var(--border-light);font-size:13px;color:var(--text2);line-height:1.5;display:none}
+.ex-card.open .ex-detail{display:block}
+.ex-changed-tag{margin-top:6px;font-size:11px;color:var(--green);font-style:italic}
+
+/* ── Info box ── */
+.info-box{border-radius:14px;padding:16px;margin-bottom:0}
+.info-box.green{background:linear-gradient(135deg,#1a2a1a,#0f1a0f);border:1px solid #2d5a2d}
+.info-box.amber{background:linear-gradient(135deg,#2a2210,#1a1508);border:1px solid rgba(232,168,56,.2)}
+.info-rule{display:flex;gap:8px;padding:5px 0;font-size:13px;color:rgba(255,255,255,.7);align-items:baseline}
+.info-rule .dot{font-size:10px;flex-shrink:0}
+
+/* ── Timeline ── */
+.timeline-item{display:flex;gap:12px;align-items:center;padding:6px 0}
+.timeline-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.timeline-dot.filled{background:var(--purple)}
+.timeline-dot.empty{background:transparent;border:2px solid rgba(167,139,250,.3)}
+.timeline-week{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--purple)}
+.timeline-action{font-size:13px;color:var(--text2);margin-top:1px}
+
+/* ── Changes summary ── */
+.changes-box{margin-top:16px;padding:14px;background:var(--green-bg);border:1px solid rgba(92,184,92,.12);border-radius:12px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.7}
+.changes-box .title{font-weight:600;color:var(--green);margin-bottom:6px;font-size:11px;letter-spacing:.08em}
+
+/* ── Footer ── */
+.footer-note{text-align:center;margin-top:28px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.2)}
+.disclaimer{text-align:center;padding:28px 20px;font-size:12px;color:var(--text3);border-top:1px solid var(--border-light);margin-top:32px}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.section{animation:fadeUp .4s ease both}
+.section:nth-child(2){animation-delay:.05s}
+.section:nth-child(3){animation-delay:.1s}
+.section:nth-child(4){animation-delay:.15s}
+.section:nth-child(5){animation-delay:.2s}
+.section:nth-child(6){animation-delay:.25s}
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="topbar-brand">Meal Plan · протокол 60+</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Меню">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Головна</a>
+      <a href="planner.html">Планувальник</a>
+      <a href="products.html">Продукти</a>
+      <a href="supplements.html">Добавки</a>
+      <a href="principles.html">Принципи</a>
+      <a href="recipes.html">Логістика</a>
+      <a href="family.html">Для сім'ї</a>
+      <a href="training.html" class="active">Тренування</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+
+  <!-- ── Header ── -->
+  <div class="page-header">
+    <div class="version">СИЛОВІ ТРЕНУВАННЯ v2.0</div>
+    <h1>Програма 2×/тиждень</h1>
+    <div class="subtitle">Full-body · A/B · 45–55 хв</div>
+  </div>
+
+  <div class="schedule">
+    <span class="badge">Ср + Сб</span>
+    <span class="sep">або</span>
+    <span class="badge">Вт + Пт</span>
+  </div>
+
+  <!-- ── Warmup ── -->
+  <div class="section" id="sec-warmup">
+    <div class="section-head" onclick="toggleSection('sec-warmup')">
+      <div>
+        <h2 style="color:var(--amber)">РОЗМИНКА</h2>
+        <div class="sub">8 хв · перед кожним тренуванням</div>
+      </div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body" id="body-warmup">
+      <div class="warmup-item"><span class="warmup-num">1</span><span class="warmup-name">Еліптичний тренажер</span><span class="warmup-detail">5 хв, помірний темп</span></div>
+      <div class="warmup-item"><span class="warmup-num">2</span><span class="warmup-name">Зовнішня ротація з гумкою</span><span class="warmup-detail">2×15 на кожну руку</span><span class="tag-new">НОВЕ</span></div>
+      <div class="warmup-item"><span class="warmup-num">3</span><span class="warmup-name">Повороти плечей</span><span class="warmup-detail">15 разів</span></div>
+      <div class="warmup-item"><span class="warmup-num">4</span><span class="warmup-name">Круги тазом</span><span class="warmup-detail">15 разів</span></div>
+      <div class="warmup-item"><span class="warmup-num">5</span><span class="warmup-name">Легкі присідання без ваги</span><span class="warmup-detail">15 разів</span></div>
+      <div class="warmup-item"><span class="warmup-num">6</span><span class="warmup-name">Розтягування спини (cat-cow)</span><span class="warmup-detail">30 сек</span></div>
+    </div>
+  </div>
+
+  <!-- ── Tab switcher ── -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('A')">ТРЕНУВАННЯ A</button>
+    <button class="tab-btn" onclick="switchTab('B')">ТРЕНУВАННЯ B</button>
+  </div>
+
+  <!-- ── Training A ── -->
+  <div class="section" id="panel-A">
+    <div class="section-head" style="pointer-events:none">
+      <div>
+        <h2 style="color:var(--accent)">ТРЕНУВАННЯ A</h2>
+        <div class="sub">Вівторок / Середа · 6 вправ · відпочинок 60–90 сек</div>
+      </div>
+    </div>
+    <div class="section-body" id="body-A">
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">1</span><span class="ex-icon">🦵</span><div class="ex-info"><div class="ex-name">Жим ногами у тренажері</div><div class="ex-muscle">Квадрицепси, сідниці</div></div><span class="ex-sets">3×12</span></div>
+        <div class="ex-detail">Стопи на ширині плечей, коліна не блокувати</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">2</span><span class="ex-icon">🔙</span><div class="ex-info"><div class="ex-name">Тяга верхнього блоку до грудей</div><div class="ex-muscle">Широчайші, біцепс</div></div><span class="ex-sets">3×10–12</span></div>
+        <div class="ex-detail">Широкий хват, лопатки разом</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">3</span><span class="ex-icon">💪</span><div class="ex-info"><div class="ex-name">Жим гантелей лежачи</div><div class="ex-muscle">Грудні, трицепс</div></div><span class="ex-sets">3×10</span></div>
+        <div class="ex-detail">Контрольований рух, лопатки зведені</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">4</span><span class="ex-icon">🔄</span><div class="ex-info"><div class="ex-name">Гіперекстензія</div><div class="ex-muscle">Розгиначі спини, сідниці</div></div><span class="ex-sets">3×12</span></div>
+        <div class="ex-detail">Повільно, БЕЗ прогину у верхній точці</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">5</span><span class="ex-icon">💪</span><div class="ex-info"><div class="ex-name">Концентровані згинання на біцепс сидячи</div><div class="ex-muscle">Біцепс</div></div><span class="ex-sets">3×10–12</span></div>
+        <div class="ex-detail">Лікоть у стегно, повна ізоляція, без розгойдування. Чергувати з hammer curl кожні 3–4 тижні.</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">6</span><span class="ex-icon">🧱</span><div class="ex-info"><div class="ex-name">Планка</div><div class="ex-muscle">Кор</div></div><span class="ex-sets">3×30–40с</span></div>
+        <div class="ex-detail">Таз нейтральний, не провисати</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Training B ── -->
+  <div class="section" id="panel-B" style="display:none">
+    <div class="section-head" style="pointer-events:none">
+      <div>
+        <h2 style="color:var(--accent)">ТРЕНУВАННЯ B</h2>
+        <div class="sub">П'ятниця / Субота · 6 вправ · відпочинок 60–90 сек</div>
+      </div>
+    </div>
+    <div class="section-body" id="body-B">
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">1</span><span class="ex-icon">🦵</span><div class="ex-info"><div class="ex-name">Гоблет присідання з гантелею</div><div class="ex-muscle">Квадрицепси, сідниці, кор</div></div><span class="ex-sets">3×10–12</span></div>
+        <div class="ex-detail">Глибина до комфорту, спина вертикальна</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">2</span><span class="ex-icon">🔙</span><div class="ex-info"><div class="ex-name">Горизонтальна тяга блоку</div><div class="ex-muscle">Середня частина спини, біцепс</div></div><span class="ex-sets">3×10–12</span></div>
+        <div class="ex-detail">Тягнути до живота, лопатки разом</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">3</span><span class="ex-icon">🏋️</span><div class="ex-info"><div class="ex-name">Жим гантелей сидячи</div><div class="ex-muscle">Дельти, трицепс</div></div><span class="ex-sets">3×10</span></div>
+        <div class="ex-detail">Спинка під 80–85°, не вигинати спину</div>
+      </div>
+      <div class="ex-card changed" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">4</span><span class="ex-icon">🦵</span><div class="ex-info"><div class="ex-name">Згинання ніг у тренажері (Leg curl)</div><div class="ex-muscle">Задня поверхня стегна</div></div><span class="ex-sets">3×12</span></div>
+        <div class="ex-detail">Замість румунської тяги — безпечно для попереку<div class="ex-changed-tag">✦ Змінено у v2.0</div></div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">5</span><span class="ex-icon">🤸</span><div class="ex-info"><div class="ex-name">Розведення гантелей в сторони</div><div class="ex-muscle">Бічні дельти</div></div><span class="ex-sets">3×12</span></div>
+        <div class="ex-detail">Невелика вага, контрольований рух</div>
+      </div>
+      <div class="ex-card" onclick="this.classList.toggle('open')">
+        <div class="ex-row"><span class="ex-num">6</span><span class="ex-icon">🐛</span><div class="ex-info"><div class="ex-name">Dead bug</div><div class="ex-muscle">Кор (глибокі стабілізатори)</div></div><span class="ex-sets">3×12</span></div>
+        <div class="ex-detail">Поперек притиснутий до підлоги</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Progression ── -->
+  <div class="section" id="sec-progress">
+    <div class="section-head" onclick="toggleSection('sec-progress')">
+      <div><h2 style="color:var(--green)">ПРОГРЕСІЯ</h2></div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body" id="body-progress">
+      <div class="info-box green">
+        <div class="info-rule"><span class="dot" style="color:var(--green)">▸</span>Збільшення ваги: +5% кожні 3–4 тижні</div>
+        <div class="info-rule"><span class="dot" style="color:var(--green)">▸</span>Умова: останні 2 повтори важкі, але техніка чиста</div>
+        <div class="info-rule"><span class="dot" style="color:var(--green)">▸</span>Якщо техніка ламається — залишити поточну вагу</div>
+        <div class="info-rule"><span class="dot" style="color:var(--green)">▸</span>Після деload-тижня: повернутися до 90% попередньої ваги</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Deload ── -->
+  <div class="section" id="sec-deload">
+    <div class="section-head" onclick="toggleSection('sec-deload')">
+      <div>
+        <h2 style="color:var(--amber)">ДЕLOAD</h2>
+        <div class="sub">Кожні 4–5 тижнів</div>
+      </div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body" id="body-deload">
+      <div class="info-box amber">
+        <div class="info-rule"><span class="dot" style="color:var(--amber)">▸</span>Вага: 50–60% від робочої</div>
+        <div class="info-rule"><span class="dot" style="color:var(--amber)">▸</span>Підходи: 2 замість 3</div>
+        <div class="info-rule"><span class="dot" style="color:var(--amber)">▸</span>Фокус на техніці та розтягуванні</div>
+        <div class="info-rule"><span class="dot" style="color:var(--amber)">▸</span>Тривалість: 30–35 хв</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Plan ── -->
+  <div class="section" id="sec-plan">
+    <div class="section-head" onclick="toggleSection('sec-plan')">
+      <div><h2 style="color:var(--purple)">ПЛАН РОЗВИТКУ</h2></div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body" id="body-plan">
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div><div class="timeline-week">Тижні 1–6</div><div class="timeline-action">Базова програма як є</div></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot empty"></div>
+        <div><div class="timeline-week">Тижні 7–12</div><div class="timeline-action">Додати Pallof press (замість або після планки/dead bug)</div></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot empty"></div>
+        <div><div class="timeline-week">Тижні 13+</div><div class="timeline-action">Додати Bird dog, розглянути 3-й тренувальний день (легкий)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Changes ── -->
+  <div class="changes-box">
+    <div class="title">ЗМІНИ У v2.0</div>
+    <div>✦ Румунська тяга → Згинання ніг (Leg curl)</div>
+    <div>✦ Велотренажер прибрано — лише еліпс</div>
+    <div>✦ Додано ротаторну розминку з гумкою</div>
+    <div>✦ Біцепс: концентровані згинання сидячи</div>
+    <div>✦ Прогресія: +5% / 3–4 тижні (було 2–3)</div>
+    <div>✦ Додано деload кожні 4–5 тижнів</div>
+    <div>✦ Додано план розвитку програми</div>
+  </div>
+
+  <div class="footer-note">Перерва між підходами: 60–90 сек</div>
+  <div class="disclaimer">Інформаційний довідник. Не замінює консультації лікаря.</div>
+</main>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', (tab === 'A' && i === 0) || (tab === 'B' && i === 1));
+  });
+  document.getElementById('panel-A').style.display = tab === 'A' ? '' : 'none';
+  document.getElementById('panel-B').style.display = tab === 'B' ? '' : 'none';
+}
+
+function toggleSection(sectionId) {
+  const sec = document.getElementById(sectionId);
+  const bodyId = sectionId.replace('sec-', 'body-');
+  const body = document.getElementById(bodyId);
+  const chevron = sec.querySelector('.chevron');
+  if (body) body.classList.toggle('hidden');
+  if (chevron) chevron.classList.toggle('closed');
+}
+</script>
+</body>
+</html>
